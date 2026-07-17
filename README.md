@@ -1,4 +1,4 @@
-#IT Support Auto-Router
+# IT Support Auto-Router
 
 An NLP-powered classifier that reads raw IT support ticket text and automatically routes it to the correct department, wrapped in a Streamlit web app.
 
@@ -47,7 +47,7 @@ Two approaches were benchmarked on a held-out 20% test set (9,568 tickets):
 
 | Approach | Accuracy | Weighted F1 |
 |---|---|---|
-| **TF-IDF + Logistic Regression** ✅ | **84.53%** | 0.85 |
+| **TF-IDF + Logistic Regression** | **84.53%** | 0.85 |
 | spaCy Word Embeddings + Logistic Regression | 69.66% | 0.70 |
 
 TF-IDF clearly outperformed dense embeddings for this task — likely because ticket text relies heavily on specific keywords (e.g. "password", "laptop", "invoice") that TF-IDF captures directly, whereas averaged word vectors dilute that signal.
