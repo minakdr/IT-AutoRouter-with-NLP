@@ -50,7 +50,11 @@ Two approaches were benchmarked on a held-out 20% test set (9,568 tickets):
 | **TF-IDF + Logistic Regression** | **84.53%** | 0.85 |
 | spaCy Word Embeddings + Logistic Regression | 69.66% | 0.70 |
 
-TF-IDF clearly outperformed dense embeddings for this task — likely because ticket text relies heavily on specific keywords (e.g. "password", "laptop", "invoice") that TF-IDF captures directly, whereas averaged word vectors dilute that signal.
+Why TF-IDF?
+TF-IDF clearly outperformed dense embeddings for this task. This is likely because ticket text relies heavily on specific technical keywords ("password", "laptop"...) that TF-IDF captures directly, whereas averaged word vectors dilute that highly specific signal with conversational filler.
+
+Why Logistic Regression?
+I also experimented with a Support Vector Machine (LinearSVC), which yielded very similar high accuracy. However, Logistic Regression was chosen as the final production model because it outputs probability scores. In a real-world business scenario, this allows the system to flag "low confidence" predictions and route them to a human for manual review.
 
 The **deployed model** uses TF-IDF features with a **LinearSVC** classifier inside a single `scikit-learn` pipeline for simplicity and speed at inference time.
 
